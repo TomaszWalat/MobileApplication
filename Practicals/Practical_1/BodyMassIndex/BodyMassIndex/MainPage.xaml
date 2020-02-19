@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BodyMassIndex.MainPage">
+
+    <StackLayout Orientation="Vertical">
+        <!-- Place new controls here -->
+        <!--<Label Text="Welcome to Xamarin.Forms!"--> 
+           <!--HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />-->
+
+        <Label
+            Text="BMI Estimate"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            Margin="0,0,0,20"
+            FontSize="Large"
+        />
+        
+        <Image 
+            Source="heart"
+            HeightRequest="100"
+            Aspect="AspectFit"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+        />
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="40,0,40,0">
+            <Label
+                Text="Height (m)"
+                HorizontalOptions="EndAndExpand"
+            />
+
+            <Entry
+                Text="Enter height in meters"
+                HorizontalOptions="CenterAndExpand"
+            />
+
+            <Label
+                Text="*"
+                HorizontalOptions="StartAndExpand"
+            />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="40,0,40,0">
+            <Label
+                Text="Weight (kg)"
+                HorizontalOptions="EndAndExpand"
+            />
+
+            <Entry
+                Text="Enter weight in kg"
+                HorizontalOptions="CenterAndExpand"
+            />
+
+            <Label
+                Text="*"
+                HorizontalOptions="StartAndExpand"
+            />
+        </StackLayout>
+
+        <Label
+            Text="Please enter a numerical value" 
+            HorizontalOptions="CenterAndExpand"
+        />
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+            <Label
+                Text="BMI"
+                HorizontalOptions="EndAndExpand"
+            />
+            
+            <Label
+                Text="..."
+                HorizontalOptions="StartAndExpand"
+            />
+        </StackLayout>
+        
+    </StackLayout>
+
+</ContentPage>

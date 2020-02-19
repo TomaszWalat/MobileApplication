@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StackLayout.MainPage">
+
+    <StackLayout Orientation="Vertical">
+        <!-- Place new controls here -->
+        <!--<Label Text="Welcome to Xamarin.Forms!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />-->
+
+        <Label 
+            Text="Label 1"
+            BackgroundColor="LightGray"
+            HorizontalOptions="Fill"
+            HorizontalTextAlignment="Center"
+            VerticalOptions="Start"
+            FontSize="Large"
+        />
+
+        <StackLayout Orientation="Horizontal" BackgroundColor="LightSalmon" VerticalOptions="FillAndExpand">
+            <Label 
+                Text="Label 2"
+                BackgroundColor="LightBlue"
+                HorizontalOptions="CenterAndExpand"
+            />
+            <Label 
+                Text="Label 3"
+                BackgroundColor="LightGreen"
+                HorizontalOptions="CenterAndExpand"
+            />
+        </StackLayout>
+        
+
+    </StackLayout>
+
+</ContentPage>
