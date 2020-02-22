@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GridLayout.MainPage">
+
+    <Grid Padding="10,10,10,10" BackgroundColor="LightGray" RowSpacing="10" ColumnSpacing="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+            <ResourceDictionary>
+                <Style TargetType="Image">
+                    <Setter Property="HorizontalOptions" Value="Center"/>
+                    <Setter Property="VerticalOptions" Value="Start"/>
+                    <Setter Property="Aspect" Value="AspectFit"/>
+                    <Setter Property="HeightRequest" Value="100"/>
+                </Style>
+
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                    <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                    <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                    <Setter Property="VerticalTextAlignment" Value="Center"/>
+                </Style>
+                
+                <Style TargetType="Entry">
+                    <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                    <Setter Property="HorizontalTextAlignment" Value="End"/>
+                    <Setter Property="Keyboard" Value="Numeric"/>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="4" Text="BMI Estimate" Margin="0,0,0,20" FontSize="Large" VerticalOptions="Start"/>
+        <Image Grid.Row="1" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="4" Source="heart"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="1" Text="Height (m)"/>
+        <!--<Entry Grid.Row="2" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="2" Text="Enter height in meters" TextChanged="Handle_HeightAsync"/>-->
+        <Slider Grid.Row="3" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="3" Maximum="3.0" Minimum="0.5" ValueChanged="Handle_HeightAsync"/>
+        <Label Grid.Row="3" Grid.Column="3" Grid.RowSpan="1" Grid.ColumnSpan="1" Text="*" x:Name="HeightErrorLabel"/>
+
+        <Label Grid.Row="4" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="1" Text="Weight (kg)"/>
+        <!--<Entry Grid.Row="4" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="2" Text="Enter weight in kg" TextChanged="Handle_WeightAsync"/>-->
+        <Slider Grid.Row="5" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="3" Maximum="200" Minimum="20.0" ValueChanged="Handle_WeightAsync"/>
+        <Label Grid.Row="5" Grid.Column="3" Grid.RowSpan="1" Grid.ColumnSpan="1" Text="*" x:Name="WeightErrorLabel"/>
+
+        <Label Grid.Row="6" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="4" Text="Please enter a numeric value" Margin="0,20,0,0" x:Name="ErrorLabel"/>
+
+        <Label Grid.Row="7" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="1" Text="BMI: " FontSize="Large" x:Name="BmiLabel"/>
+        <Label Grid.Row="7" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="1" Text="..." FontSize="Large" x:Name="OutputLabel"/>
+    </Grid>
+    
+    
+    <!--<StackLayout Orientation="Vertical">
+        --><!-- Place new controls here -->
+        <!--<Label Text="Welcome to Xamarin.Forms!"-->
+        <!--HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />--><!--
+
+        <Label
+            Text="BMI Estimate"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            Margin="0,0,0,20"
+            FontSize="Large"
+        />
+
+        <Image 
+            Source="heart"
+            HeightRequest="100"
+            Aspect="AspectFit"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+        />
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="40,0,40,0">
+            <Label
+                Text="Height (m)"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+            />
+
+            <Entry
+                Text="Enter height in meters"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                HorizontalTextAlignment="End"
+                Keyboard="Numeric"
+                TextChanged="Handle_HeightAsync"
+            />
+
+            <Label
+                Text="*"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                x:Name="HeightErrorLabel"
+            />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="40,0,40,0">
+            <Label
+                Text="Weight (kg)"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+            />
+
+            <Entry
+                Text="Enter weight in kg"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                HorizontalTextAlignment="End"
+                Keyboard="Numeric"
+                TextChanged="Handle_WeightAsync"
+            />
+
+            <Label
+                Text="*"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                x:Name="WeightErrorLabel"
+            />
+        </StackLayout>
+
+        <Label
+            Text="Please enter a numerical value" 
+            HorizontalOptions="Center"
+            Margin="0,20,0,0"
+            x:Name="ErrorLabel"
+        />
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+            <Label
+                Text="BMI: "
+                HorizontalOptions="EndAndExpand"
+                FontSize="Large"
+                x:Name="BmiLabel"
+            />
+
+            <Label
+                Text="..."
+                HorizontalOptions="StartAndExpand"
+                FontSize="Large"
+                x:Name="OutputLabel"
+            />
+        </StackLayout>
+
+    </StackLayout>-->
+
+</ContentPage>

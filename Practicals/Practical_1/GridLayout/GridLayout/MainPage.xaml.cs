@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace BodyMassIndex
+namespace GridLayout
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
@@ -34,7 +34,7 @@ namespace BodyMassIndex
             bool successful;// = false;
             string errorString;// = "";
 
-            if(eSrc == EntrySource.Height)
+            if (eSrc == EntrySource.Height)
             {
                 successful = model.SetHeighttAsString(newValueAsString, out errorString);
                 HeightErrorLabel.IsVisible = !successful;
@@ -45,7 +45,7 @@ namespace BodyMassIndex
                 WeightErrorLabel.IsVisible = !successful;
             }
 
-            if(model.BmiValue != null)
+            if (model.BmiValue != null)
             {
                 BmiLabel.IsVisible = true;
                 OutputLabel.IsVisible = true;
@@ -57,7 +57,7 @@ namespace BodyMassIndex
                 OutputLabel.IsVisible = false;
             }
 
-            if(!successful)
+            if (!successful)
             {
                 await GiveFeedbackAsync(errorString);
             }
@@ -71,14 +71,24 @@ namespace BodyMassIndex
             await ErrorLabel.FadeTo(0.0, 500);
         }
 
-        private async void Handle_HeightAsync(object sender, TextChangedEventArgs e)
+        //private async void Handle_HeightAsync(object sender, TextChangedEventArgs e)
+        //{
+        //    await SyncViewAndModelAsync(EntrySource.Height, e.NewTextValue);
+        //}
+
+        //private async void Handle_WeightAsync(object sender, TextChangedEventArgs e)
+        //{
+        //    await SyncViewAndModelAsync(EntrySource.Weight, e.NewTextValue);
+        //}
+
+        private async void Handle_HeightAsync(object sender, ValueChangedEventArgs e)
         {
-            await SyncViewAndModelAsync(EntrySource.Height, e.NewTextValue);
+            await SyncViewAndModelAsync(EntrySource.Height, e.NewValue.ToString());
         }
 
-        private async void Handle_WeightAsync(object sender, TextChangedEventArgs e)
+        private async void Handle_WeightAsync(object sender, ValueChangedEventArgs e)
         {
-            await SyncViewAndModelAsync(EntrySource.Weight, e.NewTextValue);
+            await SyncViewAndModelAsync(EntrySource.Weight, e.NewValue.ToString());
         }
     }
 }

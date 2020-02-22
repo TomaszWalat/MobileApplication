@@ -31,51 +31,71 @@
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="40,0,40,0">
             <Label
                 Text="Height (m)"
-                HorizontalOptions="EndAndExpand"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
             />
 
             <Entry
                 Text="Enter height in meters"
-                HorizontalOptions="CenterAndExpand"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                HorizontalTextAlignment="End"
+                Keyboard="Numeric"
+                TextChanged="Handle_HeightAsync"
             />
 
             <Label
                 Text="*"
-                HorizontalOptions="StartAndExpand"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                x:Name="HeightErrorLabel"
             />
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="40,0,40,0">
             <Label
                 Text="Weight (kg)"
-                HorizontalOptions="EndAndExpand"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
             />
 
             <Entry
                 Text="Enter weight in kg"
-                HorizontalOptions="CenterAndExpand"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                HorizontalTextAlignment="End"
+                Keyboard="Numeric"
+                TextChanged="Handle_WeightAsync"
             />
 
             <Label
                 Text="*"
-                HorizontalOptions="StartAndExpand"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                x:Name="WeightErrorLabel"
             />
         </StackLayout>
 
         <Label
             Text="Please enter a numerical value" 
-            HorizontalOptions="CenterAndExpand"
+            HorizontalOptions="Center"
+            Margin="0,20,0,0"
+            x:Name="ErrorLabel"
         />
 
         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
             <Label
-                Text="BMI"
+                Text="BMI: "
                 HorizontalOptions="EndAndExpand"
+                FontSize="Large"
+                x:Name="BmiLabel"
             />
             
             <Label
                 Text="..."
                 HorizontalOptions="StartAndExpand"
+                FontSize="Large"
+                x:Name="OutputLabel"
             />
         </StackLayout>
         
