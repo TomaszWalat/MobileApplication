@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GridLayoutTutorial.MainPage">
+
+    <!--<StackLayout>
+        --><!-- Place new controls here --><!--
+        <Label Text="Welcome to Xamarin.Forms!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+    </StackLayout>-->
+
+	<Grid BackgroundColor="LightSlateGray">
+		<Grid.Resources>
+			<ResourceDictionary>
+				<Style TargetType="Label">
+					<Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+					<Setter Property="VerticalOptions" Value="FillAndExpand"/>
+					<Setter Property="HorizontalTextAlignment" Value="Center"/>
+					<Setter Property="VerticalTextAlignment" Value="Center"/>
+					<Setter Property="TextColor" Value="MintCream"/>
+				</Style>
+			</ResourceDictionary>
+		</Grid.Resources>
+		
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Label Text="1" Grid.Row="0" Grid.Column="0" BackgroundColor="#EED9E4"/>
+		<Label Text="2" Grid.Row="0" Grid.Column="1" BackgroundColor="#E1DAE7"/>
+		<Label Text="3" Grid.Row="0" Grid.Column="2" BackgroundColor="#D5DBE9"/>
+		<Label Text="4" Grid.Row="0" Grid.Column="3" BackgroundColor="#C8DCEC"/>
+		<Label Text="5" Grid.Row="0" Grid.Column="4" BackgroundColor="#BBDDEE"/>
+
+		<Label Text="6" Grid.Row="1" Grid.Column="0" BackgroundColor="#D6B6C0"/>
+		<Label Text="7" Grid.Row="1" Grid.Column="1" BackgroundColor="#C2B4C5"/>
+		<Label Text="8" Grid.Row="1" Grid.Column="2" BackgroundColor="#AEB2CB"/>
+		<Label Text="9" Grid.Row="1" Grid.Column="3" BackgroundColor="#9AB0D0"/>
+		<Label Text="10" Grid.Row="1" Grid.Column="4" BackgroundColor="#86AED5"/>
+		
+		<Label Text="11" Grid.Row="2" Grid.Column="0" BackgroundColor="#AC7B84"/>
+		<Label Text="12" Grid.Row="2" Grid.Column="1" BackgroundColor="#8D748E"/>
+		<Label Text="13" Grid.Row="2" Grid.Column="2" BackgroundColor="#6D6D97"/>
+		<Label Text="14" Grid.Row="2" Grid.Column="3" BackgroundColor="#4E65A1"/>
+		<Label Text="15" Grid.Row="2" Grid.Column="4" BackgroundColor="#2E5EAA"/>
+
+		<Label Text="16" Grid.Row="3" Grid.Column="0" BackgroundColor="#683E42"/>
+		<Label Text="17" Grid.Row="3" Grid.Column="1" BackgroundColor="#543A4F"/>
+		<Label Text="18" Grid.Row="3" Grid.Column="2" BackgroundColor="#40375C"/>
+		<Label Text="19" Grid.Row="3" Grid.Column="3" BackgroundColor="#2B3369"/>
+		<Label Text="20" Grid.Row="3" Grid.Column="4" BackgroundColor="#172F76"/>
+		
+		<Label Text="21" Grid.Row="4" Grid.Column="0" BackgroundColor="#310C0D"/>
+		<Label Text="22" Grid.Row="4" Grid.Column="1" BackgroundColor="#260B1D"/>
+		<Label Text="23" Grid.Row="4" Grid.Column="2" BackgroundColor="#1B0B2D"/>
+		<Label Text="24" Grid.Row="4" Grid.Column="3" BackgroundColor="#100A3C"/>
+		<Label Text="25" Grid.Row="4" Grid.Column="4" BackgroundColor="#05094C"/>
+
+		<!-- 310c0d, 683e42, ac7b84, d6b6c0, f7e5f0 alt EED9E4 -->
+		<!-- 05094c, 172f76, 2e5eaa, 86aed5, ccedf7 alt BBDDEE -->
+
+	</Grid>
+
+</ContentPage>
