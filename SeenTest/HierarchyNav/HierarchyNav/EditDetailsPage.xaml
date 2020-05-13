@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+			 Title="Edit Details"
+			 x:Name="ThisPage"
+             x:Class="HierarchyNav.EditDetailsPage">
+    <ContentPage.Content>
+
+		<Grid>
+			<Grid.Resources>
+				<ResourceDictionary>
+					<Style TargetType="Label">
+						<Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+						<Setter Property="VerticalOptions" Value="FillAndExpand"/>
+						<Setter Property="HorizontalTextAlignment" Value="Center"/>
+						<Setter Property="VerticalTextAlignment" Value="Center"/>
+					</Style>
+				</ResourceDictionary>
+			</Grid.Resources>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<Label Text="{Binding FirstName}" x:Name="NameLabel" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="End" VerticalTextAlignment="End"/>
+			<Label Text="{Binding LastName}" x:Name="SurnameLabel" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Start" VerticalTextAlignment="End"/>
+
+			<Button Text="Edit" x:Name="EditNameButton" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Grid.ColumnSpan="2" Clicked="EditNameButton_Clicked"/>
+
+			<Label Text="{Binding Age}" x:Name="AgeLabel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalTextAlignment="End"/>
+			<Slider x:Name="EditAgeSlider" Value="{Binding Age}" Grid.Row="3" Grid.Column="0" VerticalOptions="Start" Grid.ColumnSpan="2" Maximum="120" PropertyChanged="EditAgeSlider_PropertyChanged"/>
+
+		</Grid>
+
+	</ContentPage.Content>
+</ContentPage>

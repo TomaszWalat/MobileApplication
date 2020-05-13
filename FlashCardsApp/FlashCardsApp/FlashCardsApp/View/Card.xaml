@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FlashCardsApp.View.Card">
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Label">
+				<!--<Setter Property="Padding" Value="10"/>-->
+				<Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+				<Setter Property="VerticalOptions" Value="FillAndExpand"/>
+				<Setter Property="HorizontalTextAlignment" Value="Center"/>
+				<Setter Property="VerticalTextAlignment" Value="Center"/>
+			</Style>
+		</ResourceDictionary>
+	</ContentView.Resources>
+	
+	<ContentView.Content>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			
+			<Label x:Name="CardQuestionLabel" Grid.Row="0" Grid.Column="0" Text="Q: this is a question?"/>
+			<Label x:Name="CardAnswerLabel" Grid.Row="1" Grid.Column="0" Text="A: this is the answer."/>
+		</Grid>
+		<!--<StackLayout BackgroundColor="LightSkyBlue">
+			<Label x:Name="CardQuestionLabel" Text="Q: this is a question?"/>
+			<Label x:Name="CardAnswerLabel" Text="A: this is the answer." IsVisible=""/>
+		</StackLayout>-->
+  </ContentView.Content>
+</ContentView>

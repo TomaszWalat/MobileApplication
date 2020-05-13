@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlashCardsApp.View;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace FlashCardsApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPageTabbed());
         }
 
         protected override void OnStart()

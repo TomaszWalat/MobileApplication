@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FlashCardsApp.View.AllCards"
+			 Title="Cards">
+  <ContentPage.Content>
+      <!--<StackLayout>
+          <Label Text="All cards view" />
+      </StackLayout>-->
+		<ListView x:Name="AllCardsListView" ItemsSource="{Binding AllCards}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.View>
+							<StackLayout BackgroundColor="#eee">
+								<!--<Label Text="Q:"/>-->
+								<Label Text="{Binding Question}" BackgroundColor="Accent"/>
+								<!--<Label Text="A:"/>-->
+								<Label Text="{Binding Answer}" BackgroundColor="Aqua"/>
+							</StackLayout>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+  </ContentPage.Content>
+</ContentPage>

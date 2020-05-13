@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+			 Title="Details"
+			 x:Name="ThisPage"
+             x:Class="HierarchyNav.DetailsPage">
+    <ContentPage.Content>
+        <StackLayout>
+			<Label x:Name="FirstNameLabel" Text="{Binding FirstName}" BindingContext="{x:Reference ThisPage}"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+				VerticalTextAlignment="Center"/>
+
+			<Label x:Name="SurnameLabel" Text="{Binding LastName}" BindingContext="{x:Reference ThisPage}"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+				   VerticalTextAlignment="Center"/>
+
+			<Label x:Name="AgeLabel" Text="{Binding Age}" BindingContext="{x:Reference ThisPage}"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+				   VerticalTextAlignment="Center"/>
+
+			<Button x:Name="EditDetailsButton" Text="Edit" Clicked="EditDetailsButton_Clicked"/>
+		</StackLayout>
+    </ContentPage.Content>
+</ContentPage>

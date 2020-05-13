@@ -5,16 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="GridLayoutTutorial.Margins">
-    <ContentPage.Content>
-
-		<!--<StackLayout>
-        -->
-		<!-- Place new controls here -->
-		<!--
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>-->
+	<ContentPage.Content>
 
 		<Grid ColumnSpacing="1" RowSpacing="1" BackgroundColor="LightSlateGray">
 			<Grid.Resources>
@@ -25,8 +16,6 @@
 						<Setter Property="HorizontalTextAlignment" Value="Center"/>
 						<Setter Property="VerticalTextAlignment" Value="Center"/>
 						<Setter Property="TextColor" Value="MintCream"/>
-						<!--<Setter Property="Margin" Value="0"/>
-					<Setter Property="Padding" Value="0"/>-->
 					</Style>
 				</ResourceDictionary>
 			</Grid.Resources>

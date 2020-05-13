@@ -5,17 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="GridLayoutTutorial.Bare">
-    <ContentPage.Content>
+	<ContentPage.Content>
 		
-		<!--<StackLayout>
-        -->
-		<!-- Place new controls here -->
-		<!--
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>-->
-
 		<Grid ColumnSpacing="0" RowSpacing="0" BackgroundColor="LightSlateGray">
 			<Grid.Resources>
 				<ResourceDictionary>
