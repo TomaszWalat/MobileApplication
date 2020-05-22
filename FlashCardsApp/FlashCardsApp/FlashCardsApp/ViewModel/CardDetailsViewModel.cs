@@ -1,36 +1,74 @@
 ﻿using FlashCardsApp.Model;
+using FlashCardsApp.MVVM;
 using FlashCardsApp.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace FlashCardsApp.ViewModel
 {
-    public class CardDetailsViewModel
+    public class CardDetailsViewModel : ViewModelBase
     {
         private CardModel _model;
 
         private string _question;
         private string _answer;
 
+        private CardModel Model
+        {
+            get; set;
+            //get { return _model; }
+        }
+
         public string Question
         {
-            set { _question = value; }
-            get { return _question; }
+            //set
+            //{
+            //    if (_question == value) return;
+            //    _question = value;
+            //    OnPropertyChanged();
+            //}
+            //get { return _question; }
+            get { return Model.Question; }
         }
 
         public string Answer
         {
-            set { _answer = value; }
-            get { return _answer; }
+            get
+            {
+                return Model.Answer;
+            }
         }
+
+        //{
+        //set
+        //{
+        //    if (_answer == value) return;
+        //    _answer = value;
+        //    OnPropertyChanged();
+        //}
+        //get { return _answer; }
+        //}
 
         public CardDetailsViewModel(CardModel model)
         {
-            _model = model;
-            _question = _model.Question;
-            _answer = _model.Answer;
+            Model = model;
+            //_question = _model.Question;
+            //_answer = _model.Answer;
+
+            //EditCommand = new Command<CardModel>(execute: (c) => GoToCardEditor(c));
+            EditCommand = new Command(execute: () => GoToCardEditor());
         }
 
+
+        public async void GoToCardEditor()//CardModel card)
+        {
+            CardEditorViewModel viewModel = new CardEditorViewModel(Model);
+
+            CardEditor view = new CardEditor(viewModel);
+
+            await Navigation.PushAsync(view);
+        }
     }
 }

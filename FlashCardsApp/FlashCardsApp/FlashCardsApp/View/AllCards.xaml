@@ -3,28 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:local="clr-namespace:FlashCardsApp.Misc"
              mc:Ignorable="d"
              x:Class="FlashCardsApp.View.AllCards"
+			 x:Name="AllCardsPage"
 			 Title="Cards">
-  <ContentPage.Content>
-      <!--<StackLayout>
-          <Label Text="All cards view" />
-      </StackLayout>-->
-		<ListView x:Name="AllCardsListView" ItemsSource="{Binding AllCards}">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<ViewCell>
-						<ViewCell.View>
-							<StackLayout BackgroundColor="#eee">
-								<!--<Label Text="Q:"/>-->
-								<Label Text="{Binding Question}" BackgroundColor="Accent"/>
-								<!--<Label Text="A:"/>-->
-								<Label Text="{Binding Answer}" BackgroundColor="Aqua"/>
-							</StackLayout>
-						</ViewCell.View>
-					</ViewCell>
-				</DataTemplate>
-			</ListView.ItemTemplate>
+	
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Add"/>
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:ItemTemplateSelector x:Key="TemplateSelector" PageRef="{x:Reference AllCardsPage}"/>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<ContentPage.Content>
+		<ListView x:Name="AllCardsListView" 
+				ItemsSource="{Binding AllCards}"
+				SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+				ItemTemplate="{d:StaticResource TemplateSelector}">
 		</ListView>
-  </ContentPage.Content>
+	</ContentPage.Content>
 </ContentPage>

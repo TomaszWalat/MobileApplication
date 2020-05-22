@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlashCardsApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,14 @@ namespace FlashCardsApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CardEditor : ContentPage
     {
-        public CardEditor()
+        private CardEditorViewModel _viewModel;
+
+        public CardEditor(CardEditorViewModel viewModel)
         {
             InitializeComponent();
+
+            _viewModel = viewModel;
+            BindingContext = _viewModel;
         }
     }
 }

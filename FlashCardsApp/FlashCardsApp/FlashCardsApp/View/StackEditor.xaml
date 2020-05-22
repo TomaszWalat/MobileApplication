@@ -5,11 +5,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FlashCardsApp.View.StackEditor">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Content>
+		<StackLayout>
+			<TableView>
+				<TableRoot Title="Stack">
+					<TableSection Title="Stack Details">
+						<EntryCell Label="Name:         " Placeholder="Stack Name" Keyboard="Text" Text="{Binding Model.Name}"/>
+						<EntryCell Label="Description:" Placeholder="Stack Description" Keyboard="Text" Text="{Binding Model.Description}"/>
+					</TableSection>
+				</TableRoot>
+			</TableView>
+		</StackLayout>
+	</ContentPage.Content>
 </ContentPage>

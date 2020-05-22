@@ -5,11 +5,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FlashCardsApp.View.CardEditor">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Content>
+		<StackLayout>
+			<TableView>
+				<TableRoot Title="Card">
+					<TableSection Title="Card Details">
+						<EntryCell Label="Question:" Placeholder="Question" Keyboard="Text" Text="{Binding Model.Question}"/>
+						<EntryCell Label="Answer:  " Placeholder="Answer" Keyboard="Text" Text="{Binding Model.Answer}"/>
+					</TableSection>
+					<TableSection Title="Stacks">
+						
+					</TableSection>
+				</TableRoot>
+			</TableView>
+		</StackLayout>
+		<!--<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<Label Text="Question: " Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End"/>
+			<Label Text="Answer: " Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End"/>
+			<Entry Text="" Grid.Row="0" Grid.Column="1"/>
+			<Entry Text="" Grid.Row="1" Grid.Column="1"/>
+		</Grid>-->
     </ContentPage.Content>
 </ContentPage>

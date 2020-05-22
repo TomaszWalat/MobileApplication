@@ -28,10 +28,8 @@ namespace FlashCardsApp.View
 
         private void AllCardsListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            AllCardsListView.SelectedItem = null;
-            Console.WriteLine("Item was tapped");
-            Console.WriteLine(e.Item.ToString());
-
+            //AllCardsListView.SelectedItem = null;
+            //Console.WriteLine(e.Item.GetType().Name.ToString());
             _viewModel.GoToCardDetails(e.ItemIndex);
         }
     }

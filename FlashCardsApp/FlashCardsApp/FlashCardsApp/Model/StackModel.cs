@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FlashCardsApp.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
 namespace FlashCardsApp.Model
 {
-    class StackModel
+    public class StackModel : ModelBase
     {
         private string _name;
         private string _description;
@@ -14,13 +15,27 @@ namespace FlashCardsApp.Model
 
         public string Name
         {
-            set { }
+            set 
+            {
+                if (_name != value)
+                {
+                    _name = value;
+                    OnPropertyChanged();
+                }
+            }
             get { return _name; }
         }
 
         public string Description
         {
-            set { }
+            set 
+            {
+                if (_description != value)
+                {
+                    _description = value;
+                    OnPropertyChanged();
+                }
+            }
             get { return _description; }
         }
 

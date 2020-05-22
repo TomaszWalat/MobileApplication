@@ -5,6 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FlashCardsApp.View.CardDetails">
+	
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Edit" Command="{Binding EditCommand}"/>
+	</ContentPage.ToolbarItems>
+	
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{Binding Question}" BackgroundColor="Accent"/>
