@@ -1,6 +1,7 @@
 ﻿using FlashCardsApp.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace FlashCardsApp.Model
@@ -9,6 +10,8 @@ namespace FlashCardsApp.Model
     {
         private string _question;
         private string _answer;
+
+        private ObservableCollection<StackModel> _stacks;
 
         public string Question
         {
@@ -36,10 +39,17 @@ namespace FlashCardsApp.Model
             get { return _answer;  }
         }
 
+        public ObservableCollection<StackModel> Stacks
+        {
+            get { return _stacks; }
+        }
+
         public CardModel(string question, string answer)
         {
             _question = question;
             _answer = answer;
+
+            _stacks = new ObservableCollection<StackModel>();
         }
     }
 }

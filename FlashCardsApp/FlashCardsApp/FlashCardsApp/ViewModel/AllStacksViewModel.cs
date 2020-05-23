@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace FlashCardsApp.ViewModel
@@ -14,14 +15,19 @@ namespace FlashCardsApp.ViewModel
     {
         private AllStacks _view;
         private ObservableCollection<StackModel> _allStacks;
+        private ObservableCollection<CardModel> _allCards;
         private StackModel _selectedItem;
-        private MainPageModel _mainPageModel;
 
         //protected INavigation Navigation => Application.Current.MainPage.Navigation;
 
         public ObservableCollection<StackModel> AllStacks
         {
             get { return _allStacks; }
+        }
+
+        public ObservableCollection<CardModel> AllCards
+        {
+            get { return _allCards; }
         }
 
         public StackModel SelectedItem
@@ -36,49 +42,63 @@ namespace FlashCardsApp.ViewModel
             get => _selectedItem;
         }
 
-        public MainPageModel MainPageModel { get { return _mainPageModel; } }
+        //public MainPageModel MainPageModel { get { return _mainPageModel; } }
 
-        public AllStacksViewModel(AllStacks view, MainPageModel model)
+        public AllStacksViewModel(AllStacks view, ObservableCollection<StackModel> allStacks, ObservableCollection<CardModel> allCards)
         {
             _view = view;
 
             //MainPageTabbed mainPage = (MainPageTabbed)Application.Current.MainPage.Navigation.NavigationStack.Last();
 
-            _mainPageModel = model;
-
-            _allStacks = model.AllStacks;
+            _allStacks = allStacks;
+            _allCards = allCards;
 
             StackModel stack = new StackModel("stack 1", "this is the first stack");
 
-            stack.Add(new CardModel("1. question", "answer"));
-            stack.Add(new CardModel("2. question", "answer"));
-            stack.Add(new CardModel("3. question", "answer"));
-
             _allStacks.Add(stack);
+            _allStacks.Add(new StackModel("1"));
 
             AddCommand = new Command(execute: () => {
                 
                 StackModel s = new StackModel("");
 
-                Console.WriteLine("pre stack editor 1------------------------");
+                //Console.WriteLine("pre stack editor 1------------------------");
 
-                Console.WriteLine("stack name is: " + s.Name);
+                //Console.WriteLine("stack name is: " + s.Name);
 
                 GoToStackEditor(s);
 
-                Console.WriteLine("post stack editor 3--------------------------");
+                //Console.WriteLine("post stack editor 3--------------------------");
 
-                Console.WriteLine("stack name is: " + s.Name);
+                //Console.WriteLine("stack name is: " + s.Name);
             });
 
             EditCommand = new Command<StackModel>(execute: (s) => GoToStackEditor(s));
+
+            DeleteCommand = new Command<StackModel>(execute: async (s) => {
+                SelectedItem = null;
+
+                if(await ConfirmDeleteItem())
+                {
+                    if(_allStacks.Contains(s))
+                    {
+                        for(int i = _allStacks.Count - 1; i > -1; i--)
+                        {
+                            if(_allStacks[i].Equals(s))
+                            {
+                                _allStacks.RemoveAt(i);
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         public async void GoToStackDetails(int itemIndex)
         {
             StackModel model = _allStacks[itemIndex];
 
-            StackDetailsViewModel viewModel = new StackDetailsViewModel(model);
+            StackDetailsViewModel viewModel = new StackDetailsViewModel(model, _allCards);
 
             StackDetails view = new StackDetails(viewModel);
 
@@ -96,12 +116,19 @@ namespace FlashCardsApp.ViewModel
 
             SelectedItem = null;
 
-            Console.WriteLine("in stack editor 2.1-----------------");
+            //Console.WriteLine("in stack editor 2.1-----------------");
 
             await Navigation.PushAsync(view);
 
 
-            Console.WriteLine("in stack editor 2.2-----------------");
+            //Console.WriteLine("in stack editor 2.2-----------------");
+        }
+
+        public async Task<bool> ConfirmDeleteItem()
+        {
+            bool answer = await _view.DisplayAlert("Delete Stack?", "Are you sure you want to delete this stack?", "Confirm", "Cancel");
+
+            return answer;
         }
     }
 }

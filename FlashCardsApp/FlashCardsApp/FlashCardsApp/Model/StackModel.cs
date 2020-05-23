@@ -51,6 +51,13 @@ namespace FlashCardsApp.Model
             _cards = new ObservableCollection<CardModel>();
         }
 
+        public StackModel(string name, ObservableCollection<CardModel> cards, string description = "")
+        {
+            _name = name;
+            _description = description;
+            _cards = cards;
+        }
+
         public void Add(CardModel c)
         {
             if(c != null)
@@ -68,11 +75,11 @@ namespace FlashCardsApp.Model
             {
                 if(Cards.Contains(c))
                 {
-                    foreach(CardModel card in Cards)
+                    for(int i = Cards.Count - 1; i > -1; i--)//CardModel card in Cards)
                     {
-                        if(card.Equals(c))
+                        if(Cards[i].Equals(c))
                         {
-                            Cards.Remove(card);
+                            Cards.RemoveAt(i);
                         }
                     }
                 }

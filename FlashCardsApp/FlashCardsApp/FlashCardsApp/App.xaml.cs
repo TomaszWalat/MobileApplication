@@ -10,7 +10,7 @@ namespace FlashCardsApp
     {
         private MainPageModel _model;
 
-        public MainPageModel Model { get { return _model; } }
+        //public MainPageModel Model { get { return _model; } }
 
         public App()
         {

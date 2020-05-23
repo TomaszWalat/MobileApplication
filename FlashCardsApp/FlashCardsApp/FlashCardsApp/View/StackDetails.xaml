@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="FlashCardsApp.View.StackDetails"
 			 x:Name="StackDetailsPage"
-			 Title="{Binding Name, StringFormat='{0} Stack'}">
+			 Title="{Binding Name, StringFormat='{0} Details'}">
 
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Edit" Command="{Binding EditCommand}"/>
@@ -20,24 +20,48 @@
 	</ContentPage.Resources>
 	
     <ContentPage.Content>
-        <StackLayout>
-			<TableView>
-				<TableRoot Title="Stack">
-					<TableSection Title="Stack Details">
-						<TextCell Text="{Binding Name}" TextColor="Black"/>
-						<TextCell Text="{Binding Description}" TextColor="Black"/>
-					</TableSection>
-					<TableSection Title="Cards">
-						<ViewCell>
-							<ListView x:Name="StackCardsListView" 
-									ItemsSource="{Binding Cards}"
-									SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-									ItemTemplate="{d:StaticResource TemplateSelector}">
-							</ListView>
-						</ViewCell>
-					</TableSection>
-				</TableRoot>
-			</TableView>
-		</StackLayout>
-    </ContentPage.Content>
+		<Grid HorizontalOptions="FillAndExpand">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="auto"/>
+			</Grid.ColumnDefinitions>
+
+
+			<StackLayout Grid.Column="0" Grid.Row="0" 
+						 Grid.ColumnSpan="2" 
+						 HorizontalOptions="FillAndExpand">
+				<Label Text="Stack Details"
+					   FontSize="Title"/>
+				<BoxView HeightRequest="1"
+						 BackgroundColor="LightGray"
+						 HorizontalOptions="FillAndExpand"/>
+				<Label Text="{Binding Name}"
+					   FontSize="Subtitle"/>
+				<Label Text="{Binding Description}"
+					   FontSize="Subtitle"/>
+				<BoxView HeightRequest="1"
+						 BackgroundColor="LightGray"
+						 HorizontalOptions="FillAndExpand"/>
+			</StackLayout>
+			<StackLayout Orientation="Horizontal"
+						 Grid.Row="1" Grid.Column="0"
+						 Grid.ColumnSpan="2">
+				<Label Text="Cards" 
+					   HorizontalOptions="FillAndExpand"
+					   FontSize="Title"/>
+				<Button Text="Edit" Command="{Binding EditStackCardsCommand}"/>
+			</StackLayout>
+			<ListView x:Name="StackCardsListView"
+					ItemsSource="{Binding Cards}"
+					SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+					ItemTemplate="{d:StaticResource TemplateSelector}"
+					Grid.Row="2" Grid.ColumnSpan="2">
+			</ListView>
+		</Grid>
+	</ContentPage.Content>
 </ContentPage>

@@ -1,6 +1,7 @@
 ﻿using FlashCardsApp.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -18,7 +19,7 @@ namespace FlashCardsApp.ViewModel
 
         protected INavigation Navigation => Application.Current.MainPage.Navigation;
 
-        public CardEditorViewModel(CardModel model)
+        public CardEditorViewModel(CardModel model, ObservableCollection<CardModel> allCards = null)
         {
             _original = model;
 
@@ -26,8 +27,17 @@ namespace FlashCardsApp.ViewModel
 
             SaveCommand = new Command(execute: () =>
             {
-                _original.Question = Model.Question;
-                _original.Answer = Model.Answer;
+                if(Model.Question != "" && Model.Answer != "")
+                {
+                    _original.Question = Model.Question;
+                    _original.Answer = Model.Answer;
+
+                    if(allCards != null && !allCards.Contains(model))
+                    {
+                        allCards.Add(model);
+                    }
+                }
+                
 
                 Navigation.PopAsync();
             });

@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -41,16 +42,33 @@ namespace FlashCardsApp.ViewModel
             get => _selectedItem;
         }
 
-        public AllCardsViewModel(AllCards view)
+        public AllCardsViewModel(AllCards view, ObservableCollection<CardModel> allCards)
         {
             _view = view;
-            _allCards = new StackModel("Cards", "All cards");
+            _allCards = new StackModel("Cards", allCards, "All cards");
 
             _allCards.Add(new CardModel("1 question", "answer"));
             _allCards.Add(new CardModel("2 question", "answer"));
             _allCards.Add(new CardModel("3 question", "answer"));
 
+            AddCommand = new Command(execute: () => {
+
+                CardModel c = new CardModel("", "");
+
+                GoToCardEditor(c);
+            });
+
             EditCommand = new Command<CardModel>(execute: (c) => GoToCardEditor(c));
+
+            DeleteCommand = new Command<CardModel>(execute: async (c) => {
+
+                SelectedItem = null;
+
+                if (await ConfirmDeleteItem())
+                {
+                    _allCards.Remove(c);
+                }
+            });
 
         }
 
@@ -69,7 +87,7 @@ namespace FlashCardsApp.ViewModel
 
         public async void GoToCardEditor(CardModel card)
         {
-            CardEditorViewModel viewModel = new CardEditorViewModel(card);
+            CardEditorViewModel viewModel = new CardEditorViewModel(card, _allCards.Cards);
 
             CardEditor view = new CardEditor(viewModel);
 
@@ -78,6 +96,12 @@ namespace FlashCardsApp.ViewModel
             await Navigation.PushAsync(view);
         }
 
+        public async Task<bool> ConfirmDeleteItem()
+        {
+            bool answer = await _view.DisplayAlert("Delete Card?", "Are you sure you want to delete this card?", "Confirm", "Cancel");
+            
+            return answer;
+        }
 
         //private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         //{

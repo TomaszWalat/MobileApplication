@@ -1,6 +1,8 @@
-﻿using FlashCardsApp.ViewModel;
+﻿using FlashCardsApp.Model;
+using FlashCardsApp.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +17,11 @@ namespace FlashCardsApp.View
     {
         private AllCardsViewModel _viewModel;
 
-        public AllCards()
+        public AllCards(ObservableCollection<CardModel> allCards)
         {
             InitializeComponent();
 
-            _viewModel = new AllCardsViewModel(this);
+            _viewModel = new AllCardsViewModel(this, allCards);
             BindingContext = _viewModel;
 
             AllCardsListView.SelectionMode = ListViewSelectionMode.Single;
@@ -32,5 +34,6 @@ namespace FlashCardsApp.View
             //Console.WriteLine(e.Item.GetType().Name.ToString());
             _viewModel.GoToCardDetails(e.ItemIndex);
         }
+
     }
 }

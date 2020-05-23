@@ -4,6 +4,7 @@ using System.Text;
 using Xamarin.Forms;
 using FlashCardsApp.View;
 using FlashCardsApp.Model;
+using FlashCardsApp.ViewModel;
 
 namespace FlashCardsApp
 {
@@ -20,8 +21,8 @@ namespace FlashCardsApp
         {
             _model = model;
 
-            _tabOne = new AllCards();
-            _tabTwo = new AllStacks(model);
+            _tabOne = new AllCards(Model.AllCards);
+            _tabTwo = new AllStacks(Model.AllStacks, Model.AllCards);
 
             Title = "Flash Cards";
 

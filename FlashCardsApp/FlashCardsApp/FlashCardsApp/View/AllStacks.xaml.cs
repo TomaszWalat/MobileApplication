@@ -2,6 +2,7 @@
 using FlashCardsApp.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,11 +17,11 @@ namespace FlashCardsApp.View
     {
         private AllStacksViewModel _viewModel;
 
-        public AllStacks(MainPageModel model)
+        public AllStacks(ObservableCollection<StackModel> allStacks, ObservableCollection<CardModel> allCards)
         {
             InitializeComponent();
 
-            _viewModel = new AllStacksViewModel(this, model);
+            _viewModel = new AllStacksViewModel(this, allStacks, allCards);
             BindingContext = _viewModel;
 
             AllStacksListView.SelectionMode = ListViewSelectionMode.Single;

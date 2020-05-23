@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace FlashCardsApp.ViewModel
@@ -14,12 +15,16 @@ namespace FlashCardsApp.ViewModel
     {
         private StackModel _model;
 
+        private ObservableCollection<CardModel> _allCards;
+
         private string _name;
         private string _description;
 
         private ObservableCollection<CardModel> _cards;
 
         private CardModel _selectedItem;
+
+        public ICommand EditStackCardsCommand { get; protected set; }
 
         //public event PropertyChangedEventHandler PropertyChanged;
 
@@ -62,14 +67,18 @@ namespace FlashCardsApp.ViewModel
             }
         }
 
-        public StackDetailsViewModel(StackModel model)
+        public StackDetailsViewModel(StackModel model, ObservableCollection<CardModel> allCards)
         {
             _model = model;
             _name = _model.Name;
             _description = _model.Description;
             _cards = _model.Cards;
 
+            _allCards = allCards;
+
             EditCommand = new Command(execute: () => GoToStackEditor());
+
+            EditStackCardsCommand = new Command(execute: () => GoToStackCards());
         }
 
         public async void GoToCardDetails(int itemIndex)
@@ -90,6 +99,15 @@ namespace FlashCardsApp.ViewModel
             StackEditorViewModel viewModel = new StackEditorViewModel(_model);
 
             StackEditor view = new StackEditor(viewModel);
+
+            await Navigation.PushAsync(view);
+        }
+
+        public async void GoToStackCards()
+        {
+            StackCardsViewModel viewModel = new StackCardsViewModel(_model, _allCards);
+
+            StackCards view = new StackCards(viewModel);
 
             await Navigation.PushAsync(view);
         }

@@ -27,11 +27,11 @@ namespace FlashCardsApp.ViewModel
 
             SaveCommand = new Command(execute: () => 
             {
-                Console.WriteLine("1 Saving...................");
+                //Console.WriteLine("1 Saving...................");
 
                 if (Model.Name != "")
                 {
-                    Console.WriteLine("2 Saving...................");
+                    //Console.WriteLine("2 Saving...................");
                     _original.Name = Model.Name;
                     _original.Description = Model.Description;
 
@@ -39,7 +39,7 @@ namespace FlashCardsApp.ViewModel
                     {
                         allStacks.Add(model);
 
-                        Console.WriteLine("3 Saving...................");
+                        //Console.WriteLine("3 Saving...................");
                     }
                 }
 
