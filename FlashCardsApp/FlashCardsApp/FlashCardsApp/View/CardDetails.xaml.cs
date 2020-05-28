@@ -21,6 +21,15 @@ namespace FlashCardsApp.View
 
             _viewModel = viewModel;
             BindingContext = _viewModel;
+
+            CardStacksListView.SelectionMode = ListViewSelectionMode.Single;
+            CardStacksListView.ItemTapped += CardStacksListView_ItemTapped;
+        }
+
+        private void CardStacksListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            CardStacksListView.SelectedItem = null;
+            _viewModel.GoToStackDetails(e.ItemIndex);
         }
     }
 }

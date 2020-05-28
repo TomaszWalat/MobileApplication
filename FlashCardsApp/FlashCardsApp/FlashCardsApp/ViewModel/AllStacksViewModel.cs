@@ -53,14 +53,9 @@ namespace FlashCardsApp.ViewModel
             _allStacks = allStacks;
             _allCards = allCards;
 
-            StackModel stack = new StackModel("stack 1", "this is the first stack");
-
-            _allStacks.Add(stack);
-            _allStacks.Add(new StackModel("1"));
-
             AddCommand = new Command(execute: () => {
                 
-                StackModel s = new StackModel("");
+                StackModel s = new StackModel("", _allStacks);
 
                 //Console.WriteLine("pre stack editor 1------------------------");
 
@@ -80,16 +75,7 @@ namespace FlashCardsApp.ViewModel
 
                 if(await ConfirmDeleteItem())
                 {
-                    if(_allStacks.Contains(s))
-                    {
-                        for(int i = _allStacks.Count - 1; i > -1; i--)
-                        {
-                            if(_allStacks[i].Equals(s))
-                            {
-                                _allStacks.RemoveAt(i);
-                            }
-                        }
-                    }
+                    s.RemoveSelf();
                 }
             });
         }
@@ -98,7 +84,7 @@ namespace FlashCardsApp.ViewModel
         {
             StackModel model = _allStacks[itemIndex];
 
-            StackDetailsViewModel viewModel = new StackDetailsViewModel(model, _allCards);
+            StackDetailsViewModel viewModel = new StackDetailsViewModel(model, _allCards, _allStacks);
 
             StackDetails view = new StackDetails(viewModel);
 

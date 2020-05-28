@@ -3,17 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:local="clr-namespace:FlashCardsApp.Misc"
              mc:Ignorable="d"
-             x:Class="FlashCardsApp.View.CardDetails">
+             x:Class="FlashCardsApp.View.CardDetails"
+			 x:Name="CardDetailsPage"
+			 Title="Card Details">
 	
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Edit" Command="{Binding EditCommand}"/>
 	</ContentPage.ToolbarItems>
-	
-    <ContentPage.Content>
-        <StackLayout>
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:ItemTemplateSelector x:Key="TemplateSelector" PageRef="{Reference CardDetailsPage}"/>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<ContentPage.Content>
+		<Grid HorizontalOptions="FillAndExpand">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="auto"/>
+			</Grid.ColumnDefinitions>
+
+
+			<StackLayout Grid.Column="0" Grid.Row="0" 
+						 Grid.ColumnSpan="2" 
+						 HorizontalOptions="FillAndExpand">
+				<Label Text="Card Details"
+					   FontSize="Title"/>
+				<BoxView HeightRequest="1"
+						 BackgroundColor="LightGray"
+						 HorizontalOptions="FillAndExpand"/>
+				<Label Text="{Binding Model.Question}"
+					   FontSize="Subtitle"/>
+				<Label Text="{Binding Model.Answer}"
+					   FontSize="Subtitle"/>
+				<BoxView HeightRequest="1"
+						 BackgroundColor="LightGray"
+						 HorizontalOptions="FillAndExpand"/>
+			</StackLayout>
+			<StackLayout Orientation="Horizontal"
+						 Grid.Row="1" Grid.Column="0"
+						 Grid.ColumnSpan="2">
+				<Label Text="Stacks" 
+					   HorizontalOptions="FillAndExpand"
+					   FontSize="Title"/>
+				<Button Text="Edit" Command="{Binding EditCardStacksCommand}"/>
+			</StackLayout>
+			<ListView x:Name="CardStacksListView"
+					ItemsSource="{Binding Model.Stacks}"
+					SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+					ItemTemplate="{d:StaticResource TemplateSelector}"
+					Grid.Row="2" Grid.ColumnSpan="2">
+			</ListView>
+		</Grid>
+		
+        <!--<StackLayout>
             <Label Text="{Binding Question}" BackgroundColor="Accent"/>
 			<Label Text="{Binding Answer}" BackgroundColor="Aqua"/>
-		</StackLayout>
+		</StackLayout>-->
     </ContentPage.Content>
 </ContentPage>

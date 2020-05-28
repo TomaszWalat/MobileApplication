@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="FlashCardsApp.View.StackCards"
 			 x:Name="StackCardsPage"
-			 Title="{Binding Name, StringFormat='{0} Cards'}">
+			 Title="Stack Cards">
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
 	</ContentPage.ToolbarItems>

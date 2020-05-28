@@ -11,8 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,8 +23,8 @@
     <Compile Update="View\AllStacks.xaml.cs">
       <DependentUpon>AllStacks.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\DeleteConfirmationPopup.xaml.cs">
-      <DependentUpon>DeleteConfirmationPopup.xaml</DependentUpon>
+    <Compile Update="View\PlayFlashcards.xaml.cs">
+      <DependentUpon>PlayFlashcards.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -32,6 +33,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Misc\CheckBoxCardViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Misc\CheckBoxStackViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Misc\FlashcardViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Misc\StackViewCell.xaml">
@@ -49,10 +56,10 @@
     <EmbeddedResource Update="View\CardEditor.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\DeleteConfirmationPopup.xaml">
+    <EmbeddedResource Update="View\CardStacks.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\PlayingFlashcards.xaml">
+    <EmbeddedResource Update="View\PlayFlashcards.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\StackCards.xaml">

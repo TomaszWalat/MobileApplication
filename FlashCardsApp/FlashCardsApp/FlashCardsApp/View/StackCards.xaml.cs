@@ -21,12 +21,6 @@ namespace FlashCardsApp.View
 
             _viewModel = viewModel;
             BindingContext = _viewModel;
-
-        }
-
-        private void PopulateListView()
-        {
-            //for(int i = 0; i < StackCardsListView)
         }
     }
 }

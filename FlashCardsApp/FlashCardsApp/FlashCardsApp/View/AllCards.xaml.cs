@@ -17,11 +17,11 @@ namespace FlashCardsApp.View
     {
         private AllCardsViewModel _viewModel;
 
-        public AllCards(ObservableCollection<CardModel> allCards)
+        public AllCards(ObservableCollection<CardModel> allCards, ObservableCollection<StackModel> allStacks)
         {
             InitializeComponent();
 
-            _viewModel = new AllCardsViewModel(this, allCards);
+            _viewModel = new AllCardsViewModel(this, allCards, allStacks);
             BindingContext = _viewModel;
 
             AllCardsListView.SelectionMode = ListViewSelectionMode.Single;

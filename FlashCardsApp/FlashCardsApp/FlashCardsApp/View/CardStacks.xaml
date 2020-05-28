@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:local="clr-namespace:FlashCardsApp.Misc"
+             mc:Ignorable="d"
+             x:Class="FlashCardsApp.View.CardStacks"
+			 x:Name="CardStacksPage"
+			 Title="Card Stacks">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:ItemTemplateSelector x:Key="TemplateSelector" PageRef="{x:Reference CardStacksPage}"/>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	
+    <ContentPage.Content>
+		<ListView x:Name="CardStacksListView"
+				  ItemsSource="{Binding AllStacks}"
+				  ItemTemplate="{d:StaticResource TemplateSelector}"/>
+	</ContentPage.Content>
+</ContentPage>

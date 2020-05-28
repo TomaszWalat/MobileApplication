@@ -15,6 +15,8 @@ namespace FlashCardsApp.Misc
 
         private CardModel _card;
         private StackCardsViewModel _stackCardsViewModel;
+        private StackModel _stack;
+        private CardStacksViewModel _cardStacksViewModel;
 
         public ContentPage PageRef { get; set; }
 
@@ -46,25 +48,34 @@ namespace FlashCardsApp.Misc
 
                         ViewCell cell = null;
 
-                        if(_itemType.Equals("CardModel"))
+                        if (_itemType.Equals("CardModel"))
                         {
                             cell = new CardViewCell();
 
                             cell.ContextActions.Add(item1);
                             cell.ContextActions.Add(item2);
                         }
-                        else if(_itemType.Equals("StackModel"))
+                        else if (_itemType.Equals("StackModel"))
                         {
                             cell = new StackViewCell();
 
                             cell.ContextActions.Add(item1);
                             cell.ContextActions.Add(item2);
                         }
-                        else if(_itemType.Equals("CheckBoxCard"))
+                        else if (_itemType.Equals("CheckBoxCard"))
                         {
                             bool isInStack = _stackCardsViewModel.Cards.Contains(_card);
                             cell = new CheckBoxCardViewCell(isInStack, _stackCardsViewModel);
                         }
+                        else if(_itemType.Equals("CheckBoxStack"))
+                        {
+                            bool hasCard = _cardStacksViewModel.Stacks.Contains(_stack);
+                            cell = new CheckBoxStackViewCell(hasCard, _cardStacksViewModel);
+                        }
+                        //else if(_itemType.Equals("Flashcard"))
+                        //{
+                        //    cell = new FlashcardViewCell();
+                        //}
 
                         return cell;
                     });
@@ -89,6 +100,10 @@ namespace FlashCardsApp.Misc
                     _card = (CardModel)item;
                     _stackCardsViewModel = (StackCardsViewModel)container.BindingContext;
                 }
+                //else if(container.BindingContext.GetType().Name.ToString() == "PlayFlashcardsViewModel")
+                //{
+                //    _itemType = "Flashcard";
+                //}
                 else //if (container.BindingContext.GetType().Name.ToString() == "StackDetailsViewModel")
                 {
                     _itemType = "CardModel";
@@ -96,7 +111,16 @@ namespace FlashCardsApp.Misc
             }
             else if(item.GetType().Name.Equals("StackModel"))
             {
-                _itemType = "StackModel";
+                if(container.BindingContext.GetType().Name.ToString() == "CardStacksViewModel")
+                {
+                    _itemType = "CheckBoxStack";
+                    _stack = (StackModel)item;
+                    _cardStacksViewModel = (CardStacksViewModel)container.BindingContext;
+                }
+                else
+                {
+                    _itemType = "StackModel";
+                }
             }
 
             return ItemSelected;

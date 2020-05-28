@@ -29,9 +29,10 @@ namespace FlashCardsApp.Misc
         {
             //CardModel card = (CardModel)sender;
 
-            Console.WriteLine("e.value = " + e.Value);
-            Console.WriteLine("Binding context is " + BindingContext.ToString());
+            //Console.WriteLine("e.value = " + e.Value);
+            //Console.WriteLine("Binding context is " + BindingContext.ToString());
 
+            Console.WriteLine("Starting to update the checkbox list");
             _viewModel.UpdateTempCards(e.Value, (CardModel)BindingContext);
         }
     }

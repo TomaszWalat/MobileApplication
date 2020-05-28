@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:local="clr-namespace:FlashCardsApp.Misc"
+             mc:Ignorable="d"
+             x:Class="FlashCardsApp.View.PlayFlashcards"
+			 x:Name="PlayFlashcardsPage"
+			 Title="{Binding StackName}">
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:ItemTemplateSelector x:Key="TemplateSelector" PageRef="{x:Reference PlayFlashcardsPage}"/>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<ContentPage.Content>
+
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="auto"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="auto"/>
+			</Grid.ColumnDefinitions>
+		
+		<CarouselView x:Name="FlashcardsCarouselView"
+					  ItemsSource="{Binding PlayCards}"
+					  CurrentItem="{Binding CurrentCard, Mode=TwoWay}"
+					  PeekAreaInsets="100"
+					  VerticalOptions="Center"
+                          HorizontalOptions="Center">
+			<!--ItemTemplate="{d:StaticResource TemplateSelector}"-->
+
+			<CarouselView.ItemsLayout>
+				<LinearItemsLayout SnapPointsAlignment="Center"
+								   SnapPointsType="Mandatory"
+								   Orientation="Vertical"
+								   ItemSpacing="50"/>
+			</CarouselView.ItemsLayout>
+			
+			<CarouselView.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="auto"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="auto"/>
+						</Grid.ColumnDefinitions>
+						
+						<BoxView WidthRequest="15" Grid.Column="0"/>
+
+						<Frame Grid.Column="1"
+								HasShadow="True"
+								Margin="10"
+								HeightRequest="500"
+							   MinimumHeightRequest="500"
+								CornerRadius="5"
+								BackgroundColor="LightGray">
+
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="*"/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+
+								<Label Text="{Binding Question}" 
+									   Grid.Row="0" Grid.Column="0" 
+									   HorizontalOptions="FillAndExpand"
+									   VerticalOptions="FillAndExpand"
+									   VerticalTextAlignment="Center"
+									   HorizontalTextAlignment="Center"/>
+									<Label x:Name="AnswerLabel"
+									Text="{Binding Answer}" 
+									Grid.Row="1" Grid.Column="0" 
+									HorizontalOptions="FillAndExpand"
+									VerticalOptions="FillAndExpand"
+									VerticalTextAlignment="Center"
+									HorizontalTextAlignment="Center"
+									IsVisible="False"/>
+								</Grid>
+								<!--<Frame.GestureRecognizers>
+									<SwipeGestureRecognizer Direction="Right" Command="{Binding BindingContext.CardSwipedRight}, Source={x:Reference PlayFlashcardsPage}"/>
+									<SwipeGestureRecognizer Direction="Left" Command="{Binding BindingContext.CardSwipedLeft}, Source={x:Reference PlayFlashcardsPage}"/>
+									<TapGestureRecognizer Command="{Binding BindingContext.CardTapped}, Source={x:Reference PlayFlashcardsPage}" />
+								</Frame.GestureRecognizers>-->
+						</Frame>
+
+						<BoxView WidthRequest="15" Grid.Column="2"/>
+					</Grid>
+				</DataTemplate>
+			</CarouselView.ItemTemplate>
+		</CarouselView>
+
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

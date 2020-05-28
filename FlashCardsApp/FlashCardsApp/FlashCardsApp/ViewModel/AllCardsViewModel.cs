@@ -16,7 +16,8 @@ namespace FlashCardsApp.ViewModel
     class AllCardsViewModel : ViewModelBase
     {
         private AllCards _view;
-        private StackModel _allCards;
+        private ObservableCollection<CardModel> _allCards;
+        private ObservableCollection<StackModel> _allStacks;
         private CardModel _selectedItem;
 
         //public event PropertyChangedEventHandler PropertyChanged;
@@ -27,7 +28,12 @@ namespace FlashCardsApp.ViewModel
 
         public ObservableCollection<CardModel> AllCards
         {
-            get { return _allCards.Cards; }
+            get { return _allCards; }
+        }
+
+        public ObservableCollection<StackModel> AllStacks
+        {
+            get { return _allStacks; }
         }
 
         public CardModel SelectedItem
@@ -42,18 +48,15 @@ namespace FlashCardsApp.ViewModel
             get => _selectedItem;
         }
 
-        public AllCardsViewModel(AllCards view, ObservableCollection<CardModel> allCards)
+        public AllCardsViewModel(AllCards view, ObservableCollection<CardModel> allCards, ObservableCollection<StackModel> allStacks)
         {
             _view = view;
-            _allCards = new StackModel("Cards", allCards, "All cards");
-
-            _allCards.Add(new CardModel("1 question", "answer"));
-            _allCards.Add(new CardModel("2 question", "answer"));
-            _allCards.Add(new CardModel("3 question", "answer"));
+            _allCards = allCards;
+            _allStacks = allStacks;
 
             AddCommand = new Command(execute: () => {
 
-                CardModel c = new CardModel("", "");
+                CardModel c = new CardModel("", "", _allCards);
 
                 GoToCardEditor(c);
             });
@@ -66,7 +69,7 @@ namespace FlashCardsApp.ViewModel
 
                 if (await ConfirmDeleteItem())
                 {
-                    _allCards.Remove(c);
+                    c.RemoveSelf();
                 }
             });
 
@@ -74,9 +77,9 @@ namespace FlashCardsApp.ViewModel
 
         public async void GoToCardDetails(int itemIndex)
         {
-            CardModel model = _allCards.Cards[itemIndex];
+            CardModel model = _allCards[itemIndex];
 
-            CardDetailsViewModel viewModel = new CardDetailsViewModel(model);
+            CardDetailsViewModel viewModel = new CardDetailsViewModel(model, _allStacks, _allCards);
 
             CardDetails view = new CardDetails(viewModel);
 
@@ -87,7 +90,7 @@ namespace FlashCardsApp.ViewModel
 
         public async void GoToCardEditor(CardModel card)
         {
-            CardEditorViewModel viewModel = new CardEditorViewModel(card, _allCards.Cards);
+            CardEditorViewModel viewModel = new CardEditorViewModel(card, _allCards);
 
             CardEditor view = new CardEditor(viewModel);
 
@@ -102,10 +105,5 @@ namespace FlashCardsApp.ViewModel
             
             return answer;
         }
-
-        //private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
     }
 }

@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="FlashCardsApp.View.StackDetails"
 			 x:Name="StackDetailsPage"
-			 Title="{Binding Name, StringFormat='{0} Details'}">
+			 Title="Stack Details">
 
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Edit" Command="{Binding EditCommand}"/>
@@ -40,10 +40,15 @@
 				<BoxView HeightRequest="1"
 						 BackgroundColor="LightGray"
 						 HorizontalOptions="FillAndExpand"/>
-				<Label Text="{Binding Name}"
-					   FontSize="Subtitle"/>
-				<Label Text="{Binding Description}"
-					   FontSize="Subtitle"/>
+				<StackLayout Orientation="Horizontal">
+					<StackLayout HorizontalOptions="FillAndExpand">
+						<Label Text="{Binding Model.Name}"
+						   FontSize="Subtitle"/>
+						<Label Text="{Binding Model.Description}"
+						   FontSize="Subtitle"/>
+					</StackLayout>
+					<Button Text="Play" Command="{Binding PlayFlashcardsCommand}"/>
+				</StackLayout>
 				<BoxView HeightRequest="1"
 						 BackgroundColor="LightGray"
 						 HorizontalOptions="FillAndExpand"/>
@@ -57,7 +62,7 @@
 				<Button Text="Edit" Command="{Binding EditStackCardsCommand}"/>
 			</StackLayout>
 			<ListView x:Name="StackCardsListView"
-					ItemsSource="{Binding Cards}"
+					ItemsSource="{Binding Model.Cards}"
 					SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
 					ItemTemplate="{d:StaticResource TemplateSelector}"
 					Grid.Row="2" Grid.ColumnSpan="2">

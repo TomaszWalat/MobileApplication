@@ -13,49 +13,15 @@ namespace FlashCardsApp.ViewModel
 {
     public class StackDetailsViewModel : ViewModelBase
     {
-        private StackModel _model;
-
         private ObservableCollection<CardModel> _allCards;
-
-        private string _name;
-        private string _description;
-
-        private ObservableCollection<CardModel> _cards;
+        private ObservableCollection<StackModel> _allStacks;
 
         private CardModel _selectedItem;
 
+        public StackModel Model { get; private set; }
+
         public ICommand EditStackCardsCommand { get; protected set; }
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //protected INavigation Navigation => Application.Current.MainPage.Navigation;
-
-        public string Name
-        {
-            set 
-            {
-                if (_name == value) return;
-                _name = value;
-                OnPropertyChanged();
-            }
-            get => _name;
-        }
-
-        public string Description
-        {
-            set 
-            {
-                if (_description == value) return;
-                _description = value;
-                OnPropertyChanged();
-            }
-            get => _description;
-        }
-
-        public ObservableCollection<CardModel> Cards
-        {
-            get { return _cards; }
-        }
+        public ICommand PlayFlashcardsCommand { get; protected set; }
 
         public CardModel SelectedItem
         {
@@ -67,25 +33,25 @@ namespace FlashCardsApp.ViewModel
             }
         }
 
-        public StackDetailsViewModel(StackModel model, ObservableCollection<CardModel> allCards)
+        public StackDetailsViewModel(StackModel model, ObservableCollection<CardModel> allCards, ObservableCollection<StackModel> allStacks)
         {
-            _model = model;
-            _name = _model.Name;
-            _description = _model.Description;
-            _cards = _model.Cards;
+            Model = model;
 
             _allCards = allCards;
+            _allStacks = allStacks;
 
             EditCommand = new Command(execute: () => GoToStackEditor());
 
             EditStackCardsCommand = new Command(execute: () => GoToStackCards());
+
+            PlayFlashcardsCommand = new Command(execute: () => GoToPlayFlashcards());
         }
 
         public async void GoToCardDetails(int itemIndex)
         {
-            CardModel model = _cards[itemIndex];
+            CardModel model = Model.Cards[itemIndex];
 
-            CardDetailsViewModel viewModel = new CardDetailsViewModel(model);
+            CardDetailsViewModel viewModel = new CardDetailsViewModel(model, _allStacks, _allCards);
 
             CardDetails view = new CardDetails(viewModel);
 
@@ -96,7 +62,7 @@ namespace FlashCardsApp.ViewModel
 
         public async void GoToStackEditor()
         {
-            StackEditorViewModel viewModel = new StackEditorViewModel(_model);
+            StackEditorViewModel viewModel = new StackEditorViewModel(Model);
 
             StackEditor view = new StackEditor(viewModel);
 
@@ -105,11 +71,26 @@ namespace FlashCardsApp.ViewModel
 
         public async void GoToStackCards()
         {
-            StackCardsViewModel viewModel = new StackCardsViewModel(_model, _allCards);
+            StackCardsViewModel viewModel = new StackCardsViewModel(Model, _allCards);
 
             StackCards view = new StackCards(viewModel);
 
             await Navigation.PushAsync(view);
+        }
+
+        public async void GoToPlayFlashcards()
+        {
+            //Console.WriteLine("Still not broken 1");
+
+            PlayFlashcardsViewModel viewModel = new PlayFlashcardsViewModel(Model);
+            //Console.WriteLine("Still not broken 2");
+
+            PlayFlashcards view = new PlayFlashcards(viewModel);
+            //Console.WriteLine("Still not broken 3");
+
+            await Navigation.PushAsync(view);
+
+            //Console.WriteLine("Still not broken 9");
         }
     }
 }

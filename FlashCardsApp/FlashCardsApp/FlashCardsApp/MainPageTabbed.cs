@@ -21,16 +21,10 @@ namespace FlashCardsApp
         {
             _model = model;
 
-            _tabOne = new AllCards(Model.AllCards);
+            _tabOne = new AllCards(Model.AllCards, Model.AllStacks);
             _tabTwo = new AllStacks(Model.AllStacks, Model.AllCards);
 
-            Title = "Flash Cards";
-
-            //Stack s = new Stack();
-            
-
-            //_tabTwo = new AllStacks();
-            
+            Title = "Flash Cards";            
 
             Children.Add(_tabOne);
             Children.Add(_tabTwo);
